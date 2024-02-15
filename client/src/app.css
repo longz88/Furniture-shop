@@ -1,0 +1,44 @@
+:root {
+  --primary-color: #b88e2f;
+  --white-overlay: rgba(255, 255, 255, 0.72);
+  --primary-hover: #f9f1e7;
+
+  --color: #333333;
+  --color1: #666666;
+
+  --gray1: #3a3a3a;
+  --gray2: #616161;
+  --gray3: #898989;
+  --gray4: #b0b0b0;
+  --gray5: #d8d8d8;
+  --gray6: #9f9f9f;
+
+  --gray-hover: rgba(58, 58, 58, 0.72);
+}
+
+body {
+  font-family: "Exo 2", sans-serif;
+  scroll-behavior: smooth;
+  letter-spacing: 0.025rem;
+}
+
+/* === scroll ==== */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* ==== modal antd create ====== */
+:where(.css-dev-only-do-not-override-1qhpsh8).ant-modal {
+  /* top: 50%;
+  transform: translateY(-50%); */
+  top: 50px;
+}
+
+:where(.css-dev-only-do-not-override-1qhpsh8).ant-modal .ant-modal-header {
+  margin-bottom: 20px;
+}

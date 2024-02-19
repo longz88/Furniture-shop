@@ -32,7 +32,7 @@ const TabCart = () => {
         <div className="p-7">
           <div className="flex items-start justify-between ">
             <h1 className="w-[280px] border-b border-[var(--gray6)] pb-7 text-2xl font-semibold">
-              Shopping Cart
+              Giỏ hàng
             </h1>
             <BsBagX
               size={22}
@@ -52,13 +52,15 @@ const TabCart = () => {
                 <li key={product._id} className="mb-5 flex items-center">
                   <Link>
                     <img
-                      className="mr-8 h-[80px] w-[80px] rounded-lg object-cover"
+                      className="mr-8 h-[70px] w-[70px] rounded-lg object-cover"
                       src={product.image}
                       alt="image product"
                     />
                   </Link>
                   <div className=" text-xs font-medium">
-                    <p className="mb-3 text-base font-normal">{product.name}</p>
+                    <p className="mb-2 text-base font-normal">
+                      {product.namePro}
+                    </p>
                     <div className="flex gap-3">
                       <p>{product.cartQuantity}</p> x{" "}
                       <p className="text-[var(--primary-color)]">
@@ -79,7 +81,7 @@ const TabCart = () => {
             )}
           </ul>
           <div className="mt-6 flex items-center gap-28">
-            <p className="text-base font-normal">Subtotal</p>
+            <p className="text-base font-normal">Thành tiền</p>
             <p className="text-base font-semibold text-[var(--primary-color)]">
               {cartTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
               &#8363;
@@ -95,7 +97,7 @@ const TabCart = () => {
             duration-300 hover:bg-black hover:text-white
           "
             >
-              Cart
+              Xem giỏ hàng
             </button>
           </Link>
           <Link to="/checkOut">
@@ -105,7 +107,7 @@ const TabCart = () => {
             duration-300 hover:bg-black hover:text-white
           "
             >
-              Checkout
+              Thanh toán
             </button>
           </Link>
         </div>

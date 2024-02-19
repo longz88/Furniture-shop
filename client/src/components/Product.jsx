@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { FaHeart } from "react-icons/fa";
 import { FaCircleInfo } from "react-icons/fa6";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -19,7 +18,7 @@ const Product = (props) => {
   };
 
   return (
-    <div className="group relative overflow-hidden">
+    <div className="group relative overflow-hidden rounded-[4px]">
       <img
         className="h-[300px] w-full object-cover"
         src={image}
@@ -70,18 +69,13 @@ const Product = (props) => {
         >
           Thêm vào giỏ hàng
         </button>
-        <ul className="mx-auto flex items-center gap-7 text-white">
-          <Link to={`/products/${_id}`}>
-            <li className="flex items-center gap-1">
-              <FaCircleInfo size={14} />
-              <p className="text-base font-semibold">Thông tin</p>
-            </li>
-          </Link>
-          <li className="flex items-center gap-1">
-            <FaHeart size={14} />
-            <p className="text-base font-semibold">Like</p>
-          </li>
-        </ul>
+
+        <Link to={`/products/${_id}`}>
+          <div className="flex items-center gap-1 text-white">
+            <FaCircleInfo size={14} />
+            <p className="text-base font-semibold">Thông tin</p>
+          </div>
+        </Link>
       </div>
     </div>
   );

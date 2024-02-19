@@ -1,18 +1,19 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import logo from "../assets/logo/logo-2.png";
-import { LuSearch, LuShoppingCart } from "react-icons/lu";
+import logo from "../assets/logo/logo-3.png";
+import { LuSearch, LuShoppingCart, LuHeart } from "react-icons/lu";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { showCart } from "../redux/features/cart/cartSlice";
 import { Badge } from "antd";
 import BoxSearch from "./BoxSearch";
+import "animate.css";
 
 const Header = (props) => {
   const { show } = props;
   const dispatch = useDispatch();
-  const { cartTotalQuantity, isShow } = useSelector((state) => state.cart);
+  const { cartTotalQuantity } = useSelector((state) => state.cart);
 
   const menu = [
     {
@@ -39,11 +40,12 @@ const Header = (props) => {
   return (
     <div
       className={`${
-        !show && "hidden"
-      } fixed top-0 z-10 inline-flex h-20 w-screen items-center bg-white	px-20`}
+        !show ? "scale-out-ver-top" : "scale-in-ver-top"
+      } fixed top-0 z-10 inline-flex h-20 w-screen items-center
+      bg-white px-20`}
     >
       <Link to="/">
-        <img className="h-16 w-32 object-cover" src={logo} alt="logo" />
+        <img className="h-10 w-40 object-cover" src={logo} alt="logo" />
       </Link>
 
       <ul className="absolute left-1/2 flex -translate-x-1/2 items-center gap-20">
@@ -83,6 +85,7 @@ const Header = (props) => {
             <BoxSearch inputSearch={inputSearch} />
           </div>
         </li>
+
         <li className="cursor-pointer" onClick={() => dispatch(showCart())}>
           <Badge count={cartTotalQuantity}>
             <LuShoppingCart size={24} />

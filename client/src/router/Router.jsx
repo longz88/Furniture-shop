@@ -8,8 +8,8 @@ import ProductSingle from "../pages/shop/ProductSingle";
 import Cart from "../pages/shop/Cart";
 import CheckOut from "../pages/shop/CheckOut";
 import Manage from "../pages/manage/Manage";
-import ManageProduct from "../pages/manage/ManageProduct";
-import ManageCategory from "../pages/manage/ManagerCategory";
+import ManageProduct from "../pages/manage/product/ManageProduct";
+import ManageCategory from "../pages/manage/category/ManagerCategory";
 
 const router = createBrowserRouter([
   {

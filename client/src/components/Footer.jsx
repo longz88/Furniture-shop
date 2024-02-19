@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logoFooter from "../assets/logo/logo-footer.png";
+import logoFooter from "../assets/logo/logo-3.png";
 import { BsStars } from "react-icons/bs";
 
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="col-span-2">
           <Link to="/">
             <img
-              className="mb-10 h-[60px] w-[120px] object-cover"
+              className="mb-10 h-10 w-32 object-cover"
               src={logoFooter}
               alt=""
             />

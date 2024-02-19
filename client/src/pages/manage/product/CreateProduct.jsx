@@ -1,36 +1,26 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import {
   Button,
+  Modal,
   Col,
   Form,
   Input,
   InputNumber,
-  Modal,
   Row,
   Select,
 } from "antd";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { postAProduct } from "../../../services/product/productApi";
+import { useSelector } from "react-redux";
 
 const { Option } = Select;
 
-const UpdateProduct = (props) => {
+const CreateProduct = () => {
+  // ========= module ===========
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [updateForm] = Form.useForm();
+  const [form] = Form.useForm();
 
-  const { product } = props;
-
-  const [name, setName] = useState("");
-  const [title, setTitle] = useState("");
-  const [image, setImage] = useState("");
-  const [priceNew, setPriceNew] = useState("");
-  const [priceOld, setPriceOld] = useState("");
-  const [sale, setSale] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [SKU, setSKU] = useState("");
-  const [material, setMaterial] = useState("");
-  const [dimension, setDimension] = useState("");
+  const { categories } = useSelector((state) => state.categories);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -38,57 +28,50 @@ const UpdateProduct = (props) => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
+    form.resetFields();
   };
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
+    const data = values;
+    postAProduct(data);
+    form.resetFields();
+    setIsModalOpen(false);
   };
-
-  // useEffect(() => {
-  //   if (product) {
-  //     setName(product.name);
-  //     setTitle(product.title);
-  //     setImage(product.image);
-  //     setPriceNew(product.priceNew);
-  //     setPriceOld(product.priceOld);
-  //     setSale(product.sale);
-  //     setDescription(product.description);
-  //     setCategory(product.category);
-  //     setSKU(product.SKU);
-  //     setMaterial(product.material);
-  //     setDimension(product.dimension);
-  //   }
-  // }, [product]);
 
   return (
     <div className="">
-      <Button onClick={showModal}>Edit</Button>
+      <Button type="primary" onClick={showModal} className="mb-4 bg-blue-600">
+        Add
+      </Button>
       <Modal
-        title="Update product"
+        title="Add product"
         open={isModalOpen}
-        onOk={() => updateForm.submit()}
+        onOk={() => form.submit()}
         onCancel={handleCancel}
       >
         <Form
-          form={updateForm}
-          name="update"
+          form={form}
+          name="register"
           onFinish={onFinish}
+          scrollToFirstError
           layout="vertical"
         >
           <Row gutter={10}>
             <Col span={12}>
               {" "}
               <Form.Item
-                name="name"
+                name="namePro"
                 label="Name"
                 rules={[
                   {
                     required: true,
-                    message: "Please input your nickname!",
+                    message: "Please input name!",
+                    whitespace: true,
                   },
                 ]}
               >
-                <Input value={name} />
+                <Input />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -98,11 +81,11 @@ const UpdateProduct = (props) => {
                 rules={[
                   {
                     required: true,
-                    message: "Please select category !!!",
+                    message: "Please input title!",
                   },
                 ]}
               >
-                <Input value={title} />
+                <Input />
               </Form.Item>
             </Col>
           </Row>
@@ -115,7 +98,8 @@ const UpdateProduct = (props) => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your nickname!",
+                    message: "Please input image!",
+                    whitespace: true,
                   },
                 ]}
               >
@@ -136,7 +120,7 @@ const UpdateProduct = (props) => {
                 rules={[
                   {
                     required: true,
-                    message: "Please select category !!!",
+                    message: "Please input price!",
                   },
                 ]}
               >
@@ -157,7 +141,7 @@ const UpdateProduct = (props) => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your nickname!",
+                    message: "Please input SKU!",
                   },
                 ]}
               >
@@ -171,15 +155,19 @@ const UpdateProduct = (props) => {
                 rules={[
                   {
                     required: true,
-                    message: "Please select category !!!",
+                    message: "Please select category!",
                   },
                 ]}
               >
                 <Select>
-                  <Option value="65bbcfda61c440f17a010483">
-                    65bbcfda61c440f17a010483
-                  </Option>
-                  <Option value="87">+87</Option>
+                  {categories.map((category) => (
+                    <Option
+                      key={category._id}
+                      value={category.name || category.nameCat}
+                    >
+                      {category.name || category.nameCat}
+                    </Option>
+                  ))}
                 </Select>
               </Form.Item>
             </Col>
@@ -192,7 +180,7 @@ const UpdateProduct = (props) => {
                 rules={[
                   {
                     required: true,
-                    message: "Please select category !!!",
+                    message: "Please input material!",
                   },
                 ]}
               >
@@ -206,7 +194,7 @@ const UpdateProduct = (props) => {
                 rules={[
                   {
                     required: true,
-                    message: "Please select category !!!",
+                    message: "Please input dimension!",
                   },
                 ]}
               >
@@ -221,7 +209,7 @@ const UpdateProduct = (props) => {
             rules={[
               {
                 required: true,
-                message: "Please input description !!!",
+                message: "Please input description!",
               },
             ]}
           >
@@ -233,4 +221,4 @@ const UpdateProduct = (props) => {
   );
 };
 
-export default UpdateProduct;
+export default CreateProduct;

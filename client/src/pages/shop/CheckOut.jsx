@@ -48,11 +48,9 @@ const CheckOut = () => {
         </div>
 
         <div className="px-10 py-20">
-          <div className="mb-5 flex flex-col gap-4 border-b border-[var(--gray6)] pb-8">
-            <div className="flex items-center justify-between text-2xl font-medium">
-              <p>Product</p>
-              <p>Subtotal</p>
-            </div>
+          <div className="mb-5 flex flex-col gap-4 ">
+            <p className=" text-2xl font-medium">Sản phẩm</p>
+
             <ul className="flex flex-col gap-3">
               {listProducts.length === 0 ? (
                 <p className="text-base font-normal text-[--gray6]">
@@ -67,7 +65,7 @@ const CheckOut = () => {
                     >
                       <div className="flex items-center gap-6">
                         <p className="text-base font-normal text-[--gray6]">
-                          {product.name}
+                          {product.namePro}
                         </p>{" "}
                         x <p className="font-medium">{product.cartQuantity}</p>
                       </div>
@@ -84,7 +82,12 @@ const CheckOut = () => {
             </ul>
 
             <div className="flex items-center justify-between">
-              <p className="text-base font-normal">Subtotal</p>
+              <p className="text-base font-normal">Vận chuyển</p>
+              <p className="font-light">Liên hệ phí vận chuyển sau</p>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <p className="text-base font-normal">Thành tiền</p>
               <p className="font-light">
                 {cartTotalAmount
                   .toString()
@@ -93,7 +96,7 @@ const CheckOut = () => {
               </p>
             </div>
             <div className="flex items-center justify-between">
-              <p className="text-base font-normal">Total</p>
+              <p className="text-base font-normal">Tổng</p>
               <p className="text-2xl font-bold text-[var(--primary-color)]">
                 {cartTotalAmount
                   .toString()
@@ -102,8 +105,8 @@ const CheckOut = () => {
               </p>
             </div>
           </div>
-
-          <ul className="">
+          <hr />
+          <ul className="pt-6">
             <div className="flex flex-col">
               <div onClick={() => setActive("bank")} className="mb-3">
                 <input
@@ -117,15 +120,25 @@ const CheckOut = () => {
                   className="ml-4 cursor-pointer text-base font-normal"
                   htmlFor="bank"
                 >
-                  Direct Bank Transfer
+                  Chuyển khoản ngân hàng
                 </label>
               </div>
               {active === "bank" && (
-                <p className="mb-6 text-base font-light text-[--gray6]">
-                  Make your payment directly into our bank account. Please use
-                  your Order ID as the payment reference. Your order will not be
-                  shipped until the funds have cleared in our account.
-                </p>
+                <div className="mb-6 text-center text-base font-light text-[--gray6]">
+                  <p className="mb-4">
+                    Quý khách vui lòng chuyển khoản trước số tiền cần thanh
+                    toán, sau đó chúng tôi tiến hành giao hàng theo thỏa thuận
+                    hoặc hợp đồng với Quý khách.
+                  </p>
+                  Thông tin tài khoản:
+                  <p className=" font-semibold">
+                    1027565*** - Vietcombank
+                    <br />
+                    LongDecor.
+                  </p>
+                  <br />
+                  Nội dung chuyển khoản : Ghi rõ Số điện thoại hoặc Số đơn hàng
+                </div>
               )}
 
               <div onClick={() => setActive("walk")} className="mb-3">
@@ -139,23 +152,28 @@ const CheckOut = () => {
                   className="ml-4 cursor-pointer text-base font-normal"
                   htmlFor="walk"
                 >
-                  Cash On Delivery
+                  Thanh toán khi nhận hàng
                 </label>
               </div>
               {active === "walk" && (
                 <p className="mb-6 text-base font-light text-[--gray6]">
-                  Walk make your payment directly into our bank account. Please
-                  use your Order ID as the payment reference. Your order will
-                  not be shipped until the funds have cleared in our account.
+                  Thanh toán bằng tiền mặt khi nhận hàng.
                 </p>
               )}
 
-              <p className="mb-10 mt-5 font-light">
-                Your personal data will be used to support your experience
-                throughout this website, to manage access to your account, and
-                for other purposes described in our{" "}
-                <span className="font-semibold">privacy policy.</span>
-              </p>
+              <hr />
+              <div className="my-4 font-light"></div>
+              <div className="mb-10 flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  className="mt-2 cursor-pointer accent-black"
+                />
+                <p>
+                  {" "}
+                  Tôi đã đọc và đồng ý điều kiện đổi trả hàng, giao hàng, chính
+                  sách bảo mật, điều khoản dịch vụ mua hàng online.
+                </p>
+              </div>
 
               <button
                 className="mx-auto rounded-xl border border-black px-24 py-4 text-xl

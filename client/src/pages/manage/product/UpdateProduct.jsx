@@ -1,23 +1,36 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import {
   Button,
-  Modal,
   Col,
   Form,
   Input,
   InputNumber,
+  Modal,
   Row,
   Select,
 } from "antd";
-import { useState } from "react";
-import { postAProduct } from "../../services/product/productApi";
+import { useEffect, useState } from "react";
 
 const { Option } = Select;
 
-const CreateProduct = () => {
-  // ========= module ===========
+const UpdateProduct = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [form] = Form.useForm();
+  const [updateForm] = Form.useForm();
+
+  const { product } = props;
+
+  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
+  const [priceNew, setPriceNew] = useState("");
+  const [priceOld, setPriceOld] = useState("");
+  const [sale, setSale] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [SKU, setSKU] = useState("");
+  const [material, setMaterial] = useState("");
+  const [dimension, setDimension] = useState("");
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -25,50 +38,58 @@ const CreateProduct = () => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    form.resetFields();
   };
 
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
-    const data = values;
-    postAProduct(data);
-    form.resetFields();
     setIsModalOpen(false);
   };
 
+  useEffect(() => {
+    if (product) {
+      setName(product.namePro);
+      setTitle(product.title);
+      setImage(product.image);
+      setPriceNew(product.priceNew);
+      setPriceOld(product.priceOld);
+      setSale(product.sale);
+      setDescription(product.description);
+      setCategory(product.category);
+      setSKU(product.SKU);
+      setMaterial(product.material);
+      setDimension(product.dimension);
+    }
+  }, [product]);
+
   return (
     <div className="">
-      <Button type="primary" onClick={showModal} className="mb-4 bg-blue-600">
-        Add
-      </Button>
+      <Button onClick={showModal}>Edit</Button>
       <Modal
-        title="Add product"
+        title="Update product"
         open={isModalOpen}
-        onOk={() => form.submit()}
+        onOk={() => updateForm.submit()}
         onCancel={handleCancel}
       >
         <Form
-          form={form}
-          name="register"
+          form={updateForm}
+          name="update"
           onFinish={onFinish}
-          scrollToFirstError
           layout="vertical"
         >
           <Row gutter={10}>
             <Col span={12}>
               {" "}
               <Form.Item
-                name="namePro"
+                name="name"
                 label="Name"
                 rules={[
                   {
                     required: true,
-                    message: "Please input name!",
-                    whitespace: true,
+                    message: "Please input your nickname!",
                   },
                 ]}
               >
-                <Input />
+                <Input value={name} />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -78,11 +99,11 @@ const CreateProduct = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input title!",
+                    message: "Please select category !!!",
                   },
                 ]}
               >
-                <Input />
+                <Input value={title} />
               </Form.Item>
             </Col>
           </Row>
@@ -95,12 +116,11 @@ const CreateProduct = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input image!",
-                    whitespace: true,
+                    message: "Please input your nickname!",
                   },
                 ]}
               >
-                <Input />
+                <Input value={image} />
               </Form.Item>
             </Col>
             <Col span={12}>
@@ -117,7 +137,7 @@ const CreateProduct = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input price!",
+                    message: "Please select category !!!",
                   },
                 ]}
               >
@@ -138,7 +158,7 @@ const CreateProduct = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input SKU!",
+                    message: "Please input your nickname!",
                   },
                 ]}
               >
@@ -152,7 +172,7 @@ const CreateProduct = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please select category!",
+                    message: "Please select category !!!",
                   },
                 ]}
               >
@@ -173,7 +193,7 @@ const CreateProduct = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input material!",
+                    message: "Please select category !!!",
                   },
                 ]}
               >
@@ -187,7 +207,7 @@ const CreateProduct = () => {
                 rules={[
                   {
                     required: true,
-                    message: "Please input dimension!",
+                    message: "Please select category !!!",
                   },
                 ]}
               >
@@ -202,7 +222,7 @@ const CreateProduct = () => {
             rules={[
               {
                 required: true,
-                message: "Please input description!",
+                message: "Please input description !!!",
               },
             ]}
           >
@@ -214,4 +234,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default UpdateProduct;

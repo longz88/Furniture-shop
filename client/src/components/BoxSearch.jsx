@@ -11,9 +11,9 @@ const BoxSearch = (props) => {
       {inputSearch !== "" && (
         <div
           className="absolute left-0 top-[120%] max-h-[50vh] w-[130%]
-      overflow-y-auto rounded-lg bg-white px-2 py-2
-      shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px]
-      "
+            overflow-y-auto rounded-lg bg-white px-2 py-2
+            shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px]
+          "
         >
           <ul className="flex flex-col gap-3 ">
             {products
@@ -28,8 +28,7 @@ const BoxSearch = (props) => {
                 <Link to={`/products/${product._id}`} key={product._id}>
                   <li
                     className="flex items-center gap-4 rounded-md
-            px-2 py-2 duration-300
-            hover:bg-[var(--gray5)]"
+                      px-2 py-2 duration-300 hover:bg-[var(--gray5)]"
                   >
                     <img
                       className="h-10 w-10 rounded-md object-cover"

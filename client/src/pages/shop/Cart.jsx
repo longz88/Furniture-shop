@@ -33,10 +33,10 @@ const Cart = () => {
             <tbody>
               <tr className=" h-[55px] bg-[var(--primary-hover)] text-base font-medium">
                 <th></th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
                 <th></th>
               </tr>
               {listProducts.length === 0 ? (
@@ -63,7 +63,9 @@ const Cart = () => {
                           alt=""
                         />
                       </td>
-                      <td className=" text-[var(--gray6)]">{product.name}</td>
+                      <td className=" text-[var(--gray6)]">
+                        {product.namePro}
+                      </td>
                       <td className="w-30 text-[var(--gray6)]">
                         {product.priceNew
                           .toString()
@@ -123,16 +125,16 @@ const Cart = () => {
           )}
         </div>
         <div className="h-max w-full bg-[var(--primary-hover)] pb-20 pt-14 text-center">
-          <h1 className="mb-16 text-3xl font-semibold">Cart Totals</h1>
+          <h1 className="mb-16 text-3xl font-semibold">Tổng đơn hàng</h1>
           <div className="mx-auto flex w-[240px] items-center justify-between">
-            <p className=" font-medium">Subtotal</p>
+            <p className=" font-medium">Thành tiền</p>
             <p className=" font-normal text-[var(--gray6)]">
               {cartTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
               &#8363;
             </p>
           </div>
           <div className="mx-auto mb-10 mt-8 flex w-[240px] items-center justify-between">
-            <p className=" font-medium">Total</p>
+            <p className=" font-medium">Tổng tiền</p>
             <p className="text-xl font-medium text-[var(--primary-color)]">
               {cartTotalAmount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
               &#8363;
@@ -143,7 +145,7 @@ const Cart = () => {
               className="rounded-xl border border-solid border-black px-10 py-3 text-xl
               font-normal duration-300 hover:bg-black hover:text-white"
             >
-              Check Out
+              Thanh toán
             </button>
           </Link>
         </div>

@@ -7,8 +7,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const Shop = () => {
-  const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
+  const { categories } = useSelector((state) => state.categories);
 
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 12;
@@ -41,7 +41,7 @@ const Shop = () => {
             >
               <Space wrap>
                 <Select
-                  defaultValue="Phân loại"
+                  defaultValue="Category"
                   style={{
                     width: 200,
                   }}

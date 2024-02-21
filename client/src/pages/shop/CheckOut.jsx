@@ -16,34 +16,25 @@ const CheckOut = () => {
 
       <div className=" mx-auto mt-14 grid max-w-screen-xl grid-cols-2 gap-7">
         <div className=" px-16 pt-9">
-          <h1 className=" mb-9 text-4xl font-semibold">Bildivng details</h1>
+          <h1 className=" mb-9 text-4xl font-semibold">Thông tin giao hàng</h1>
           <div className="flex flex-col gap-9">
             <div className="flex items-center gap-8">
-              <FormInput name="First Name" title="firstName" />
-              <FormInput name="Last Name" title="lastName" />
+              <FormInput name="Họ" title="firstName" />
+              <FormInput name="Tên" title="lastName" />
             </div>
-            <FormInput name="Company Name (Optional)" title="company" />
+            <FormInput name="Tên công ty (Không bắt buộc)" title="company" />
             <FormInput
-              name="Country / Region"
-              title="country"
-              type="select"
-              value={["HN", "HCM", "ĐN", "TB"]}
-            />
-            <FormInput name="Street address" title="street" />
-            <FormInput name="Town / City" title="city" />
-            <FormInput
-              name="Province"
+              name="Tỉnh"
               title="province"
               type="select"
               value={["HN", "HCM", "ĐN", "TB"]}
             />
-            <FormInput name="Phone" title="phone" />
-            <FormInput name="Email address" title="email" type="email" />
-            <FormInput
-              name=""
-              title="info"
-              placeholder="Additional information"
-            />
+            <FormInput name="Thành phố" title="city" />
+            <FormInput name="Đường" title="street" />
+
+            <FormInput name="Số điện thoại" title="phone" />
+            <FormInput name="Địa chỉ email" title="email" type="email" />
+            <FormInput name="" title="info" placeholder="Thông tin liên quan" />
           </div>
         </div>
 
@@ -132,7 +123,7 @@ const CheckOut = () => {
                   </p>
                   Thông tin tài khoản:
                   <p className=" font-semibold">
-                    1027565*** - Vietcombank
+                    1027565*** - Vietnambank
                     <br />
                     LongDecor.
                   </p>

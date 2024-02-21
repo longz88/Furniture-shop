@@ -2,9 +2,11 @@
 import BannerPage from "../../components/BannerPage";
 import Product from "../../components/Product";
 import { ConfigProvider, Select, Space } from "antd";
-import bannerFooter from "../../assets/banner/bannerFooter.jpg";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import SelectBox from "../../components/SelectBox";
+
+const dataSelect = [];
 
 const Shop = () => {
   const { products } = useSelector((state) => state.products);
@@ -26,71 +28,14 @@ const Shop = () => {
       <BannerPage title={"Shop"} />
 
       <div className="bg-[#F9F1E7]">
-        <div className="mx-auto flex h-[100px] max-w-screen-xl items-center justify-between">
+        <div className="mx-auto flex h-[80px] max-w-screen-xl items-center justify-between">
           <p>
             Hiển thị {startIndex} – {endIndex} trong {products.length} kết quả
           </p>
-          <div className="">
-            <ConfigProvider
-              theme={{
-                token: {
-                  colorPrimary: "#b88e2f",
-                  borderRadius: 4,
-                },
-              }}
-            >
-              <Space wrap>
-                <Select
-                  defaultValue="Category"
-                  style={{
-                    width: 200,
-                  }}
-                  options={[
-                    {
-                      value: "Theo mức độ phổ biến",
-                      label: "Theo mức độ phổ biến",
-                    },
-                    {
-                      value: "Mới nhất",
-                      label: "Mới nhất",
-                    },
-                    {
-                      value: "Theo giá: Thấp đến cao",
-                      label: "Theo giá: Thấp đến cao",
-                    },
-                    {
-                      value: "Theo giá: cao đến thấp",
-                      label: "Theo giá: cao đến thấp",
-                    },
-                  ]}
-                />
-                <Select
-                  defaultValue="Lọc"
-                  style={{
-                    width: 200,
-                    marginLeft: "24px",
-                  }}
-                  options={[
-                    {
-                      value: "Theo mức độ phổ biến",
-                      label: "Theo mức độ phổ biến",
-                    },
-                    {
-                      value: "Mới nhất",
-                      label: "Mới nhất",
-                    },
-                    {
-                      value: "Theo giá: Thấp đến cao",
-                      label: "Theo giá: Thấp đến cao",
-                    },
-                    {
-                      value: "Theo giá: cao đến thấp",
-                      label: "Theo giá: cao đến thấp",
-                    },
-                  ]}
-                />
-              </Space>
-            </ConfigProvider>
+          <div className="flex items-center gap-8">
+            <SelectBox values={categories} />
+            <SelectBox values={categories} />
+            <SelectBox values={categories} />
           </div>
         </div>
       </div>
@@ -133,12 +78,6 @@ const Shop = () => {
           Next
         </button>
       </div>
-
-      <img
-        className="mt-24 h-[250px] w-full object-cover"
-        src={bannerFooter}
-        alt=""
-      />
     </div>
   );
 };

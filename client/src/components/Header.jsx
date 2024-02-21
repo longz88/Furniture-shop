@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { showCart } from "../redux/features/cart/cartSlice";
 import { Badge } from "antd";
 import BoxSearch from "./BoxSearch";
-import "animate.css";
 
 const Header = (props) => {
   const { show } = props;
@@ -40,7 +39,7 @@ const Header = (props) => {
   return (
     <div
       className={`${
-        !show ? "scale-out-ver-top" : "scale-in-ver-top"
+        !show && "hidden"
       } fixed top-0 z-10 inline-flex h-20 w-screen items-center
       bg-white px-20`}
     >

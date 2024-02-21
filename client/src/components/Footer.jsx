@@ -4,7 +4,7 @@ import { BsStars } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <div className="border-t border-gray-200">
+    <div className="mt-24 border-t border-gray-200">
       <div className="mx-auto grid max-w-screen-xl grid-cols-7 border-b border-gray-200 py-12">
         <div className="col-span-2">
           <Link to="/">

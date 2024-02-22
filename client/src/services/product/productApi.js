@@ -16,7 +16,7 @@ export const postAProduct = async (data) => {
 
 export const updateAProduct = async (data, id) => {
   const res = await publicAxios.put(`/api/product/${id}`, data);
-  return res;
+  return res.data;
 };
 
 export const deleteAProduct = async (id) => {

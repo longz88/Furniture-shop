@@ -9,7 +9,7 @@ import Cart from "../pages/shop/Cart";
 import CheckOut from "../pages/shop/CheckOut";
 import Manage from "../pages/manage/Manage";
 import ManageProduct from "../pages/manage/product/ManageProduct";
-import ManageCategory from "../pages/manage/category/ManagerCategory";
+import ManageCategory from "../pages/manage/category/ManageCategory";
 
 const router = createBrowserRouter([
   {

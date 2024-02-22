@@ -93,16 +93,16 @@ const Design = () => {
         </div>
 
         <div className="flex h-[486px] flex-1 gap-6 overflow-hidden">
-          <img
-            className="h-full w-[400px] object-cover"
-            src={listTitle[currentIndex].image}
-            alt=""
-          />
-          <img
-            className="h-full w-[400px] object-cover"
-            src={listTitle[currentIndex].image}
-            alt=""
-          />
+          {listTitle
+            .filter((item) => item.image !== listTitle[currentIndex].image)
+            .map((item, index) => (
+              <img
+                key={index}
+                className="h-full w-[400px] object-cover"
+                src={item.image}
+                alt=""
+              />
+            ))}
         </div>
       </div>
     </div>

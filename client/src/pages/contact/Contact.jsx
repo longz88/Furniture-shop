@@ -1,8 +1,13 @@
 import BannerPage from "../../components/BannerPage";
 import { FaLocationDot, FaPhone, FaClock } from "react-icons/fa6";
 import FormInput from "../../components/FormInput";
+import { useEffect } from "react";
 
 const Contact = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="">
       <BannerPage title="Contact" />

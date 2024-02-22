@@ -24,13 +24,13 @@ export const cartSlice = createSlice({
 
       if (productIndex >= 0) {
         state.listProducts[productIndex].cartQuantity += 1;
-        toast.info("Increased product quantity");
+        toast.info(`Đã thêm ${action.payload.namePro} vào giỏ hàng`);
       } else {
         state.listProducts = [
           ...state.listProducts,
           { ...action.payload, cartQuantity: 1 },
         ];
-        toast.success(`Added ${action.payload.name} to cart`);
+        toast.success(`Đã thêm ${action.payload.namePro} vào giỏ hàng`);
 
         localStorage.setItem(
           "listProducts",
@@ -47,7 +47,7 @@ export const cartSlice = createSlice({
       );
 
       state.listProducts = nextProduct;
-      toast.error(`Removed ${action.payload.name} from to cart`);
+      toast.error(`Đã xóa ${action.payload.namePro} khỏi giỏ hàng`);
       localStorage.setItem("listProducts", JSON.stringify(state.listProducts));
     },
     decreaseProductInCart: (state, action) => {
@@ -57,14 +57,14 @@ export const cartSlice = createSlice({
 
       if (state.listProducts[productIndex].cartQuantity > 1) {
         state.listProducts[productIndex].cartQuantity -= 1;
-        toast.info(`Decreased ${action.payload.name} from to cart`);
+        toast.info(`Đã giảm ${action.payload.namePro} từ giỏ hàng`);
       } else if (state.listProducts[productIndex].cartQuantity === 1) {
         const nextListProducts = state.listProducts.filter(
           (product) => product._id !== action.payload._id,
         );
 
         state.listProducts = nextListProducts;
-        toast.error(`Decreased ${action.payload.name} from to cart`);
+        toast.error(`Đã xóa ${action.payload.namePro} từ giỏ hàng`);
         localStorage.setItem(
           "listProducts",
           JSON.stringify(state.listProducts),
@@ -73,7 +73,7 @@ export const cartSlice = createSlice({
     },
     clearCart: (state) => {
       state.listProducts = [];
-      toast.info(`Cleared cart`);
+      toast.info(`Đã dọn sạch giỏ hàng`);
       localStorage.setItem("listProducts", JSON.stringify(state.listProducts));
     },
     getCartTotal: (state) => {

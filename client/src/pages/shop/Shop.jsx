@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import SelectBox from "../../components/SelectBox";
 
-const dataSelect = [];
+const dataSort = ["Bán chạy", "Mới nhất", "Giá: Tăng dần", "Giá: Giảm dần"];
 
 const Shop = () => {
   const { products } = useSelector((state) => state.products);
@@ -33,9 +33,8 @@ const Shop = () => {
             Hiển thị {startIndex} – {endIndex} trong {products.length} kết quả
           </p>
           <div className="flex items-center gap-8">
-            <SelectBox values={categories} />
-            <SelectBox values={categories} />
-            <SelectBox values={categories} />
+            <SelectBox values={categories} titleDefault="Phân loại" />
+            <SelectBox values={dataSort} titleDefault="Sort" />
           </div>
         </div>
       </div>

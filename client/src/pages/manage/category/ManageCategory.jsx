@@ -2,35 +2,11 @@
 import { Table, Button, Flex, Modal, Popconfirm, message } from "antd";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import CreateProduct from "./CreateProduct";
-import UpdateProduct from "./UpdateProduct";
-import { deleteAProduct } from "../../../services/product/productApi";
+import { deleteACategory } from "../../../services/category/categoryApi";
+import CreateCategory from "./CreateCategory";
+import UpdateProduct from "./UpdateCategory";
 
-// const columns = [
-//   {
-//     title: 'Tags',
-//     key: 'tags',
-//     dataIndex: 'tags',
-//     render: (_, { tags }) => (
-//       <>
-//         {tags.map((tag) => {
-//           let color = tag.length > 5 ? 'geekblue' : 'green';
-//           if (tag === 'loser') {
-//             color = 'volcano';
-//           }
-//           return (
-//             <Tag color={color} key={tag}>
-//               {tag.toUpperCase()}
-//             </Tag>
-//           );
-//         })}
-//       </>
-//     ),
-//   },
-// ];
-
-const ManageProduct = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const ManageCategory = () => {
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
   const [dataUpdate, setDataUpdate] = useState(null);
@@ -38,67 +14,36 @@ const ManageProduct = () => {
 
   const confirm = () => {
     message.success(`Deleted ${dataDelete.nameCat}`);
-    deleteAProduct(dataDelete._id);
+    deleteACategory(dataDelete._id);
   };
+  // const cancel = () => {
+  //   message.error("No delete");
+  // };
 
-  const products = useSelector((state) => state.products);
   const { categories } = useSelector((state) => state.categories);
 
   const columns = [
     {
-      title: "Image",
-      dataIndex: "image",
-      key: "image",
-      render: (image) => (
-        <img
-          className="h-12 w-12 rounded-md object-cover"
-          src={image}
-          alt="image"
-        />
-      ),
-    },
-    {
-      title: "Name Product",
-      dataIndex: "namePro",
-      width: "15%",
-    },
-    {
-      title: "Category",
-      dataIndex: "category",
-      width: "20%",
-    },
-    {
-      title: "Price New",
-      dataIndex: "priceNew",
-      width: "15%",
-      render: (priceNew) => (
-        <p>{priceNew.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
-      ),
-    },
-    {
-      title: "Price Old",
-      dataIndex: "priceOld",
-      width: "15%",
-      render: (priceOld) => (
-        <p>{priceOld?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
-      ),
+      title: "Name Category",
+      dataIndex: "nameCat",
     },
     {
       title: "Action",
       key: "action",
-      render: (product) => (
+      render: (category) => (
         <Flex wrap="wrap" gap="small">
           <Button
             onClick={() => {
               setIsUpdateModalOpen(true);
-              setDataUpdate(product);
+              setDataUpdate(category);
             }}
           >
             Edit
           </Button>
+
           <Popconfirm
-            title="Delete product"
-            description={`Are you sure to delete this product?`}
+            title="Delete category"
+            description={`Are you sure to delete ${dataDelete.nameCat}?`}
             onConfirm={confirm}
             okText="Yes"
             cancelText="No"
@@ -106,7 +51,7 @@ const ManageProduct = () => {
             <Button
               danger
               onClick={() => {
-                setDataDelete(product);
+                setDataDelete(category);
               }}
             >
               Delete
@@ -126,8 +71,8 @@ const ManageProduct = () => {
   });
 
   useEffect(() => {
-    setData(products.products);
-  }, [products]);
+    setData(categories);
+  }, [categories]);
 
   const handleTableChange = (pagination, filters, sorter) => {
     setTableParams({
@@ -143,7 +88,7 @@ const ManageProduct = () => {
 
   return (
     <div className="">
-      <CreateProduct />
+      <CreateCategory />
 
       <Table
         columns={columns}
@@ -162,4 +107,4 @@ const ManageProduct = () => {
   );
 };
 
-export default ManageProduct;
+export default ManageCategory;

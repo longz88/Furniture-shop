@@ -8,11 +8,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { showCart } from "../redux/features/cart/cartSlice";
 import { Badge } from "antd";
 import BoxSearch from "./BoxSearch";
+import { setActivePage } from "../redux/features/page/activePageSlice";
 
 const Header = (props) => {
   const { show } = props;
   const dispatch = useDispatch();
   const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const { actPage } = useSelector((state) => state.activePage);
 
   const menu = [
     {
@@ -32,7 +34,6 @@ const Header = (props) => {
       link: "contact",
     },
   ];
-  const [active, setActive] = useState("Home");
   const [openSearch, setOpenSearch] = useState(false);
   const [inputSearch, setInputSearch] = useState("");
 
@@ -52,10 +53,10 @@ const Header = (props) => {
           <Link to={`/${item.link}`} key={index}>
             <li
               onClick={() => {
-                setActive(item.name);
+                dispatch(setActivePage(item.name));
                 window.scrollTo(0, 0);
               }}
-              className={`${active === item.name && "text-[var(--primary-color)] duration-300"}
+              className={`${actPage === item.name && "text-[var(--primary-color)] duration-300"}
               text-lg font-medium duration-300 hover:text-[var(--primary-color)]`}
             >
               {item.name}

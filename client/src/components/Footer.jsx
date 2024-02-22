@@ -1,14 +1,21 @@
+/* eslint-disable no-unused-vars */
 import { Link } from "react-router-dom";
 import logoFooter from "../assets/logo/logo-3.png";
 import { BsStars } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { setActivePage } from "../redux/features/page/activePageSlice";
 
 const Footer = () => {
+  const dispatch = useDispatch();
+  // const { actPage } = useSelector((state) => state.activePage);
+
   return (
     <div className="mt-24 border-t border-gray-200">
       <div className="mx-auto grid max-w-screen-xl grid-cols-7 border-b border-gray-200 py-12">
         <div className="col-span-2">
           <Link to="/">
             <img
+              onClick={() => dispatch(setActivePage("Home"))}
               className="mb-10 h-10 w-32 object-cover"
               src={logoFooter}
               alt=""
@@ -20,22 +27,34 @@ const Footer = () => {
         <div className="flex flex-col gap-12 text-base font-medium">
           <p className="text-[var(--gray5)] ">Liên kết</p>
           <Link to="/">
-            <p className="duration-300 hover:text-[var(--primary-color)]">
+            <p
+              className="duration-300 hover:text-[var(--primary-color)]"
+              onClick={() => dispatch(setActivePage("Home"))}
+            >
               Home
             </p>
           </Link>
           <Link to="/shop">
-            <p className="duration-300 hover:text-[var(--primary-color)]">
+            <p
+              className="duration-300 hover:text-[var(--primary-color)]"
+              onClick={() => dispatch(setActivePage("Shop"))}
+            >
               Shop
             </p>
           </Link>
           <Link to="/about">
-            <p className="duration-300 hover:text-[var(--primary-color)]">
+            <p
+              className="duration-300 hover:text-[var(--primary-color)]"
+              onClick={() => dispatch(setActivePage("About"))}
+            >
               About
             </p>
           </Link>
           <Link to="/contact">
-            <p className="duration-300 hover:text-[var(--primary-color)]">
+            <p
+              className="duration-300 hover:text-[var(--primary-color)]"
+              onClick={() => dispatch(setActivePage("Contact"))}
+            >
               Contact
             </p>
           </Link>
@@ -58,7 +77,10 @@ const Footer = () => {
             </p>
           </Link>
           <Link to="/manage">
-            <p className="flex items-center gap-2 duration-300 hover:text-[var(--primary-color)]">
+            <p
+              className="flex items-center gap-2 duration-300 hover:text-[var(--primary-color)]"
+              onClick={() => dispatch(setActivePage(""))}
+            >
               Manage
               <BsStars />
             </p>

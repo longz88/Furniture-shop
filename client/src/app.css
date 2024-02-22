@@ -34,8 +34,6 @@ body {
 
 /* ==== modal antd create ====== */
 :where(.css-dev-only-do-not-override-1qhpsh8).ant-modal {
-  /* top: 50%;
-  transform: translateY(-50%); */
   top: 50px;
 }
 

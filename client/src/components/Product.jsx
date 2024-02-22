@@ -7,8 +7,7 @@ import { addProductToCart, showCart } from "../redux/features/cart/cartSlice";
 
 const Product = (props) => {
   const { product } = props;
-  const { _id, image, namePro, name, title, priceNew, priceOld, sale } =
-    product;
+  const { _id, image, namePro, title, priceNew, priceOld, sale } = product;
 
   const dispatch = useDispatch();
 
@@ -34,8 +33,11 @@ const Product = (props) => {
       )}
 
       <div className="flex flex-col items-start bg-[#F4F5F7] px-4 pb-8 pt-4">
-        <p className="text-2xl font-semibold text-[var(--gray1)]">
-          {namePro || name}
+        <p
+          className="w-[260px] overflow-hidden text-ellipsis whitespace-nowrap
+          text-2xl font-semibold text-[var(--gray1)]"
+        >
+          {namePro}
         </p>
         <p
           className="my-2 w-[240px] overflow-hidden text-ellipsis

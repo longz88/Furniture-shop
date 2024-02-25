@@ -45,7 +45,12 @@ const Header = (props) => {
       bg-white px-20`}
     >
       <Link to="/">
-        <img className="h-10 w-40 object-cover" src={logo} alt="logo" />
+        <img
+          onClick={() => dispatch(setActivePage("Home"))}
+          className="h-10 w-40 object-cover"
+          src={logo}
+          alt="logo"
+        />
       </Link>
 
       <ul className="absolute left-1/2 flex -translate-x-1/2 items-center gap-20">

@@ -37,7 +37,7 @@ const ManageProduct = () => {
   const [dataDelete, setDataDelete] = useState("");
 
   const confirm = () => {
-    message.success(`Deleted ${dataDelete.nameCat}`);
+    message.success(`Deleted ${dataDelete.namePro}`);
     deleteAProduct(dataDelete._id);
   };
 
@@ -60,7 +60,7 @@ const ManageProduct = () => {
     {
       title: "Name Product",
       dataIndex: "namePro",
-      width: "15%",
+      width: "25%",
     },
     {
       title: "Category",
@@ -70,7 +70,7 @@ const ManageProduct = () => {
     {
       title: "Price New",
       dataIndex: "priceNew",
-      width: "15%",
+      width: "10%",
       render: (priceNew) => (
         <p>{priceNew.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
       ),
@@ -78,7 +78,7 @@ const ManageProduct = () => {
     {
       title: "Price Old",
       dataIndex: "priceOld",
-      width: "15%",
+      width: "10%",
       render: (priceOld) => (
         <p>{priceOld?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
       ),

@@ -1,5 +1,22 @@
 const mongoose = require("mongoose");
 
+const categorySchema = new mongoose.Schema(
+  {
+    nameCat: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    products: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+      },
+    ],
+  },
+  { timestamps: true }
+);
+
 const productSchema = new mongoose.Schema(
   {
     namePro: {
@@ -41,10 +58,6 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // supplier: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Supplier",
-    // },
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
@@ -53,4 +66,7 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Product", productSchema);
+let Category = mongoose.model("Category", categorySchema);
+let Product = mongoose.model("Product", productSchema);
+
+module.exports = { Category, Product };

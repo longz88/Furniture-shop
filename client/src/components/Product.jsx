@@ -17,9 +17,9 @@ const Product = (props) => {
   };
 
   return (
-    <div className="group relative overflow-hidden rounded-[4px]">
+    <div className="group relative overflow-hidden rounded">
       <img
-        className="h-[300px] w-full object-cover"
+        className="h-[300px] w-full rounded-t border object-cover"
         src={image}
         alt={namePro}
       />
